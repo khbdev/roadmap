@@ -1,12 +1,11 @@
 
-
 # 🧪 6-HAFTA — Testing & Best Practices
 
-## 📅 **Chorshanba → Yakshanba**
+## 📅 **Dushanba → Shanba**
 
 ---
 
-## 🟡 **Chorshanba — Unit & Table-driven Tests**
+## 🟡 **Dushanba — Unit & Table-driven Tests**
 
 ### **Nazariya (17:00–19:00)**
 
@@ -43,7 +42,7 @@
 
 ---
 
-## 🟡 **Payshanba — Mocking & Integration Tests**
+## 🟡 **Seshanba — Mocking & Integration Tests**
 
 ### **Nazariya (17:00–19:00)**
 
@@ -54,13 +53,12 @@
 
 ### **Amaliy (20:00–22:00)**
 
-* Interface:
+```go
+type UserRepo interface {
+    GetByID(id int) (*User, error)
+}
+```
 
-  ```go
-  type UserRepo interface {
-      GetByID(id int) (*User, error)
-  }
-  ```
 * Mock implementatsiya
 * Unit test (DBsiz)
 * Integration test:
@@ -75,7 +73,7 @@
 
 ---
 
-## 🟡 **Juma — Benchmarking & Performance**
+## 🟡 **Chorshanba — Benchmarking & Performance**
 
 ### **Nazariya (17:00–19:00)**
 
@@ -98,7 +96,7 @@
 
 ---
 
-## 🟡 **Shanba — Logging & Error Handling**
+## 🟡 **Payshanba — Logging & Error Handling**
 
 ### **Nazariya (17:00–19:00)**
 
@@ -125,30 +123,48 @@
 
 ---
 
-## 🟡 **Yakshanba — Graceful Shutdown & Health Check**
+## 🟡 **Juma — Graceful Shutdown**
 
 ### **Nazariya (17:00–19:00)**
 
 * `SIGINT`, `SIGTERM`
 * Graceful shutdown nima uchun muhim
+* `context` bilan lifecycle
+* Server to‘xtash ssenariylari
+
+### **Amaliy (20:00–22:00)**
+
+* `context.WithCancel`
+* `signal.Notify`
+* Active request’larni tugatish
+* Serverni to‘g‘ri yopish
+
+🎯 **Natija:**
+
+> Service to‘xtaganda userlar zarar ko‘rmaydi
+
+---
+
+## 🟡 **Shanba — Health Check & Config**
+
+### **Nazariya (17:00–19:00)**
+
 * `/healthz`, `/readyz`
 * Config & secrets:
 
   * `.env`
   * environment separation
+* Prod readiness tushunchasi
 
 ### **Amaliy (20:00–22:00)**
 
-* Graceful shutdown:
-
-  * `context.WithCancel`
-  * `signal.Notify`
-* Serverni to‘xtat → active request tugasin
 * Health check endpoint
 * Env variable load
+* Configlarni ajratish
+* Local vs prod test
 
 🎯 **Natija:**
 
-> **Production-grade Go service**
+> **Production-grade Go service** 🚀
 
 ---
