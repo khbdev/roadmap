@@ -1,172 +1,312 @@
-7-HAFTA — Design Patterns & Clean Code
 
 
----
-
-## **Dushanba — Factory Pattern**
-
-**Maqsad:** Oddiy obyekt yaratishni abstraktsiyalash va real code’da qo‘llash
-
-### Nazariya
-
-- Factory Pattern nima va qachon ishlatiladi
-    
-- Interface vs Concrete type
-    
-- Afzalliklar: encapsulation, decoupling
-    
-- Misol: logger yoki database connector yaratish
-    
-
-### Amaliy
-
-- Oddiy `Go` struct + interface yaratish
-    
-- `NewProduct()` factory method bilan obyekt yaratish
-    
-- 2–3 turdagi obyektni bitta factory orqali yaratish
-    
-- Test: yangi obyekt qo‘shish → minimal code o‘zgartirish bilan
-    
+# 🔥 6-HAFTA — Design Patterns (SENING FORMATDA)
 
 ---
 
-## **Seshanba — Abstract Factory Pattern**
+# 🟢 DUSHANBA — Factory Pattern
 
-**Maqsad:** Bir nechta bog‘langan obyektlarni bir joyda yaratish
+### 🎯 Maqsad:
 
-### Nazariya
-
-- Abstract Factory vs Factory Pattern farqi
-    
-- Product families tushunchasi
-    
-- Qachon ishlatiladi: GUI widgets, DB connectors
-    
-- Coupling kamaytirish
-    
-
-### Amaliy
-
-- 2 ta product family yaratish (`Button` va `Checkbox`)
-    
-- `GUIFactory` interface va `WindowsFactory` / `MacFactory` concrete implementatsiyasi
-    
-- Test: factory o‘zgarsa → client code o‘zgarmaydi
-    
+Object creation’ni abstrakt qilish
 
 ---
 
-## **Chorshanba — Builder Pattern**
+### P1 – Nazariya
 
-**Maqsad:** Murakkab obyekt yaratishni bosqichma-bosqich abstraktsiyalash
+* Factory nima?
+* Qachon kerak?
+* new dan farqi nima?
 
-### Nazariya
+### P2 – Amaliy
 
-- Builder Pattern nima
-    
-- Director va Builder interfeysi
-    
-- Qachon ishlatiladi: complex object construction (reports, UI components)
-    
-- Real-world: Horizontal vs Vertical scaling, Stateless vs Stateful architectures
-    
-
-### Amaliy
-
-- `Car` yoki `House` struct yaratish
-    
-- `Builder` interface + `CarBuilder` / `HouseBuilder`
-    
-- `Director` yordamida step-by-step build
-    
-- Test: turli config bilan 2–3 obyekt yaratish
-    
+* Product interface
+* 2 ta concrete type (FileLogger, DBLogger)
 
 ---
 
-## **Payshanba — Prototype Pattern**
+### P3 – Nazariya
 
-**Maqsad:** Obyektni clone qilish orqali creation costni kamaytirish
+* Encapsulation
+* Decoupling
+* Open/Closed Principle
 
-### Nazariya
+### P4 – Amaliy
 
-- Prototype Pattern nima
-    
-- Deep copy vs Shallow copy
-    
-- Qachon ishlatiladi: load balancing, performance testing
-    
-- Real-world: DB connection pool yoki config cloning
-    
-
-### Amaliy
-
-- `Go` struct + `Clone()` method
-    
-- Object copy qil → originaldan mustaqil ishlaydi
-    
-- Test: 2–3 obyektni clone qilish va field o‘zgartirish
-    
-- Compare performance: new vs clone
-    
+* `NewLogger(type string)` factory method yoz
+* Switch orqali object qaytar
 
 ---
 
-## **Juma — Singleton Pattern**
-
-**Maqsad:** Global access va single instance management
-
-### Nazariya
-
-- Singleton Pattern nima
-    
-- Thread-safe implementation (`sync.Once`)
-    
-- Qachon ishlatiladi: logging, configuration, caching
-    
-- Tech impact: Scalability, Security, Reliability & Availability, Data Management, Performance
-    
-
-### Amaliy
-
-- `Go` da thread-safe singleton yaratish
-    
-- 2–3 goroutine bilan bir vaqtda singleton instance olish
-    
-- Test: instance har doim bitta ekanini tekshirish
-    
+### 30 min dam
 
 ---
 
-## **Shanba — Pattern Integration + Mini Project**
+### P5 – Nazariya
 
-**Maqsad:** Barcha patternlarni bir loyihada ko‘rish va integratsiya
+* Factory vs simple constructor farqi
+* Qachon overengineering?
 
-### Nazariya
+### P6 – Amaliy
 
-- Qaysi pattern qayerda foydali
-    
-- Coupling vs Cohesion tahlili
-    
-- Patterns combined usage (Factory + Builder + Singleton)
-    
-
-### Amaliy
-
-- Mini Go project: `Vehicle Management System`
-    
-    - Factory → Vehicle yaratish
-        
-    - Abstract Factory → Vehicle families (Car, Bike)
-        
-    - Builder → Complex vehicle configuration
-        
-    - Prototype → Vehicle cloning
-        
-    - Singleton → Global registry / config
-        
-- Test: bir nechta vehicle create + clone + global registry check
-    
+* Yangi logger turi qo‘sh
+* Client code o‘zgarmasin
 
 ---
+
+### P7 – Nazariya
+
+* Real backend misol (DB connector, payment provider)
+
+### P8 – Amaliy
+
+* Kichik test yoz
+* README ga tradeoff yoz
+
+---
+
+# 🟢 SESHANBA — Abstract Factory
+
+---
+
+### P1 – Nazariya
+
+* Factory vs Abstract Factory farqi
+
+### P2 – Amaliy
+
+* Button + Checkbox interface yoz
+
+---
+
+### P3 – Nazariya
+
+* Product families tushunchasi
+
+### P4 – Amaliy
+
+* WindowsFactory implement qil
+
+---
+
+### 30 min dam
+
+---
+
+### P5 – Nazariya
+
+* Coupling kamayishi
+
+### P6 – Amaliy
+
+* MacFactory qo‘sh
+
+---
+
+### P7 – Nazariya
+
+* Client code factory almashtirganda nima bo‘ladi?
+
+### P8 – Amaliy
+
+* Factory ni o‘zgartirib test qil
+* Client o‘zgarmasin
+
+---
+
+# 🟢 CHORSHANBA — Builder
+
+---
+
+### P1 – Nazariya
+
+* Builder nima?
+* Qachon Factory yetmaydi?
+
+### P2 – Amaliy
+
+* Car struct yoz
+
+---
+
+### P3 – Nazariya
+
+* Builder interface
+
+### P4 – Amaliy
+
+* CarBuilder yoz
+
+---
+
+### 30 min dam
+
+---
+
+### P5 – Nazariya
+
+* Director roli
+
+### P6 – Amaliy
+
+* Director qo‘sh
+
+---
+
+### P7 – Nazariya
+
+* Builder vs telescoping constructor
+
+### P8 – Amaliy
+
+* 2 xil config bilan car yarat
+
+---
+
+# 🟢 PAYSHANBA — Prototype
+
+---
+
+### P1 – Nazariya
+
+* Prototype nima?
+* Deep vs Shallow copy
+
+### P2 – Amaliy
+
+* Clone() method yoz
+
+---
+
+### P3 – Nazariya
+
+* Performance foydasi
+
+### P4 – Amaliy
+
+* Clone qilingan object field o‘zgartir
+
+---
+
+### 30 min dam
+
+---
+
+### P5 – Nazariya
+
+* Real use case (config cloning, pooling)
+
+### P6 – Amaliy
+
+* 3 ta clone yarat
+
+---
+
+### P7 – Nazariya
+
+* Qachon ishlatmaslik kerak?
+
+### P8 – Amaliy
+
+* Simple benchmark (new vs clone)
+
+---
+
+# 🟢 JUMA — Singleton
+
+---
+
+### P1 – Nazariya
+
+* Singleton nima?
+* Qachon zararli?
+
+### P2 – Amaliy
+
+* Basic singleton yoz
+
+---
+
+### P3 – Nazariya
+
+* Thread-safety muammosi
+
+### P4 – Amaliy
+
+* sync.Once bilan yoz
+
+---
+
+### 30 min dam
+
+---
+
+### P5 – Nazariya
+
+* Global state xavfi
+
+### P6 – Amaliy
+
+* 3 goroutine test
+
+---
+
+### P7 – Nazariya
+
+* DI vs Singleton
+
+### P8 – Amaliy
+
+* Test: instance har doim bitta
+
+---
+
+# 🟢 SHANBA — Integration Day
+
+---
+
+### P1 – Nazariya
+
+* Qaysi pattern qayerda ishladi?
+
+### P2 – Amaliy
+
+* Vehicle interface yoz
+
+---
+
+### P3 – Nazariya
+
+* Patternlarni kombinatsiya qilish
+
+### P4 – Amaliy
+
+* Factory + Abstract Factory qo‘sh
+
+---
+
+### 30 min dam
+
+---
+
+### P5 – Nazariya
+
+* Cohesion vs Coupling
+
+### P6 – Amaliy
+
+* Builder + Prototype qo‘sh
+
+---
+
+### P7 – Nazariya
+
+* Global config qayerda?
+
+### P8 – Amaliy
+
+* Singleton registry qo‘sh
+* README yoz
+
+---
+
